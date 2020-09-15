@@ -11,6 +11,8 @@
     "test": "node test.js"
   },
   "dependencies": {
+    "d3-fetch": "^2.0.0",
+    "d3-hierarchy": "^2.0.0",
     "ejs": "^2.7.4",
     "express": "^4.17.1"
   },
