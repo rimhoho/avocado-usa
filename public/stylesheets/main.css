@@ -1,2 +1,2 @@
 body {margin: 0;}
-canvas {padding: 0; display: block; margin: auto;}
+canvas, svg {padding: 0; display: block; margin: auto;}
