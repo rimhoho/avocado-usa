@@ -1,8 +1,8 @@
-type,country,share_in_market,quantity,1Year_growth_in_value,1Year_growth_in_qty,unit_price,concentration_of_import_destinations
-,Export,,,,,,
-Export,Mexico,21.80%,1050M,-11.00%,17.70%,2.29,High
-Export,Netherlands,6.60%,245.78M,15.70%,29.90%,2.97,Very Low
-Export,Peru,6.60%,Nan,24.40%,1.70%,Nan,Low
-Export,Spain,3.20%,108.89M,1.60%,-25.20%,3.25,Low
-Export,Chile,2.90%,135.53M,35.80%,34.50%,2.44,Low
-Export,United States,1.60%,68.48M,18%,39.50%,2.62,High
+type,country,share_in_market,1Year_growth_in_value,1Year_growth_in_qty
+,Export,,,
+Export,Mexico,21.8,-11,17.7
+Export,Netherlands,6.6,15.7,29.9
+Export,Peru,6.6,24.4,1.7
+Export,Spain,3.2,1.6,-25.2
+Export,Chile,2.9,35.8,34.5
+Export,United States,1.6,18,39.5

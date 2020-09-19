@@ -1,8 +1,8 @@
-type,country,share_in_market,quantity,1Year_growth_in_value,1Year_growth_in_qty,unit_price,concentration_of_import_destinations
-,Import,,,,,,
-Import,United States,20.30%,1040M,-10.20%,15.30%,2.36,Very High
-Import,Netherlands,4.50%,258.74M,-2.20%,24.8%,2.09,Very Low
-Import,France,3.40%,143.55M,-8.70%,-1.70%,2.85,Low
-Import,Germany,2.60%,93.08M,0.153,28.00%,3.41,Low
-Import,Spain,2.30%,129.32M,0.114,30.80%,2.17,Low
-Import,United Kingdom,2.20%,117.67M,-5.30%,12.00%,2.27,Very Low
+type,country,share_in_market,1Year_growth_in_value,1Year_growth_in_qty
+,Import,,,
+Import,United States,20.3,-10.2,15.3
+Import,Netherlands,4.5,-2.2,24.8
+Import,France,3.4,-8.7,-1.7
+Import,Germany,2.6,15.3,28
+Import,Spain,2.3,11.4,30.8
+Import,United Kingdom,2.2,-5.3,12
