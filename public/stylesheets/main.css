@@ -1,2 +1,8 @@
 body {margin: 0;}
-canvas, svg {padding: 0; display: block; margin: auto;}
+canvas {clear:both; padding: 0; display: block; margin: auto;}
+.title {font-family: 'Alegreya Sans SC'; font-weight: 900; font-size: 4.2vw; line-height: 0.02vh; fill: #423b2b; margin: 0.2rem 0 0.2rem 0;}
+.subtitle {font-family: 'Roboto'; font-weight: 400; font-size: 1.5vw; line-height: 0.02vh; fill: #423b2b;}
+.body {font-family: 'Roboto'; font-weight: 400; font-size: 1.2vw; line-height: 1.2vh; fill: #725744;}
+.caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.98vw; line-height: 0.013vh; fill: #a8a09b;}
+
+.container {width:10em; float:left; margin:20px;}
