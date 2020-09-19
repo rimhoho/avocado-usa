@@ -39,6 +39,7 @@ const _colorArr = { brownDark:'rgba(66, 59, 43, ', brownLighter: 'rgba(96, 88, 7
 let _startX, _startY, _sec1TitleY, _sec1BodyY, _sec1CaptionY, _sec1Avocado1X, _sec1Avocado1Y, _sec1Avocado2X;
 let newHeight = 0;
 
+
 //  SET PREFIX
 window.requestAnimationFrame = (function(){
   return window.requestAnimationFrame ||
@@ -342,7 +343,7 @@ function onInit(){
 
     let canvasWidth                 = _canvas.width;
     let canvasHeight                = _canvas.height;
-    _sec1Avocado1X - _sec1Avocado1Y
+
     _startX                         = canvasWidth * onGetRatio(80, 1920);
     _startY                         = canvasWidth * onGetRatio(120, 1920);
     _sec1TitleY                     = canvasHeight * onGetRatio(240, 900);
