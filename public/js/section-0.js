@@ -11,12 +11,12 @@ const avocado1Desc = {main_nutrition_text: ['Copper', 'Total fat', 'Pantothenic 
                       sub_nutirition2: 'Carotenoids  Lutein  Zinc  Fiber  Mangaese  Magnesium  Thiamin  Niacin  Iron',
                       nutrition_pct: [5, 5, 14, 36, 40],
                       layer_dsc: ['Exocarp', 'Mesocarp', 'Endocarp', 'Seed']}              
-const _spacingSec1 = {scaleRatio: [1, 0.95, 0.9, 0.76, 0.4], 
+const _spacingSec1 = {scaleRatio: [1, 0.6, 0.24, 0.1, 0.05], 
                       avocado1XRatio: [1.4, 1.36, 1.32, 1.23, 1.16], 
                       avocado1YRatio: [1.1, 1.27, 1.56, 2.36, 3.3], 
                       avocado2XRatio: [0.84, 0.84, 0.86, 0.855], 
                       avocado2YRatio: [1.05, 1.5, 2.29, 2.8]};
-const _color =  { scale: ['#bfb23c', '#92a740', '#528736', '#385e2b', '#213a1a'],
+const _color =  { scale: ['#213a1a', '#385e2b', '#528736', '#92a740', '#bfb23c'],
                   bg : ['#eeefd3', '#cfd6b9', '#94593f'],
                   brown: '#423b2b',
                   lighterBrown: '#725744',
@@ -59,14 +59,9 @@ function onGetRatio(val1, val2, isFloor = false){
 
 
 function onTweenSec1(sec1Svg) {
-  const setAvoWidth         = _canvasWidth * onGetRatio(380, 1920);
-  const setAvoHeight        = _canvasHeight * onGetRatio(568, 900);
+  const setAvoWidth         = _canvasWidth * onGetRatio(412, 1920);
+  const setAvoHeight        = _canvasHeight * onGetRatio(600, 900);
   const AvoMargin           = _canvasWidth * onGetRatio(2, 1920);
-  const rect1RefHeight      = (setAvoHeight - (AvoMargin * 2)) * -1 * _spacingSec1.scaleRatio[0];
-  const rect2RefHeight      = (setAvoHeight - (AvoMargin * 2)) * -1 * _spacingSec1.scaleRatio[1];
-  const rect3RefHeight      = (setAvoHeight - (AvoMargin * 2)) * -1 * _spacingSec1.scaleRatio[2];
-  const rect4RefHeight      = (setAvoHeight - (AvoMargin * 2)) * -1 * _spacingSec1.scaleRatio[3];
-  const rect5RefHeight      = (setAvoHeight - (AvoMargin * 2)) * -1 * _spacingSec1.scaleRatio[4];
   const Avo2CenterX         = _sec1Avocado2X + (setAvoWidth / 2);
   const Avo2CenterY         = _sec1Avocado1Y + (setAvoHeight / 2);
   const parentEl = document.createElementNS(svgNS, 'g');
@@ -74,27 +69,30 @@ function onTweenSec1(sec1Svg) {
   const parentE2 = document.createElementNS(svgNS, 'g');
         parentE2.setAttributeNS(null, 'id', 'sec1-avocado2');
 
-   // draw rect
-   console.log(_sec1Avocado1X + AvoMargin, setAvoHeight + _sec1Avocado1Y - AvoMargin, setAvoWidth - (AvoMargin * 2), rect1RefHeight)
-   const rectEl1 = document.createElementNS(svgNS, 'rect');
-         rectEl1.setAttributeNS(null, 'x', _sec1Avocado1X + AvoMargin);
-         rectEl1.setAttributeNS(null, 'y', setAvoHeight + _sec1Avocado1Y - AvoMargin);
-         rectEl1.setAttributeNS(null, 'width', setAvoWidth - (AvoMargin * 2));
-         rectEl1.setAttributeNS(null, 'height', rect1RefHeight)
-   const rectEl2 = document.createElementNS(svgNS, 'rect');
-   const rectEl3 = document.createElementNS(svgNS, 'rect');
-   const rectEl4 = document.createElementNS(svgNS, 'rect');
-   const rectEl5 = document.createElementNS(svgNS, 'rect');
-         parentEl.appendChild(rectEl1);
-         parentEl.appendChild(rectEl2);
-         parentEl.appendChild(rectEl3);
-         parentEl.appendChild(rectEl4);
-         parentEl.appendChild(rectEl5);
+  // draw rect
+  for (var i = 0; i <5; i++) {
+    let rectEls = document.createElementNS(svgNS, 'rect');
+        rectEls.setAttributeNS(null, 'id', `rectEl${i}`);
+        rectEls.setAttributeNS(null, 'x', _sec1Avocado1X);
+        rectEls.setAttributeNS(null, 'y', _sec1Avocado1Y);
+        rectEls.setAttributeNS(null, 'width', setAvoWidth - (AvoMargin * 2));
+        rectEls.setAttributeNS(null, 'height', setAvoHeight * _spacingSec1.scaleRatio[i] - AvoMargin);
+        rectEls.setAttributeNS(null, 'fill', _color.scale[i]);
+        parentEl.appendChild(rectEls);
+    let Avo1lineEls = document.createElementNS(svgNS, 'rect');
+        Avo1lineEls.setAttributeNS(null, 'id', `Avo1line${i}`);
+        Avo1lineEls.setAttributeNS(null, 'x', _sec1Avocado1X);
+        Avo1lineEls.setAttributeNS(null, 'y', _sec1Avocado1Y);
+        Avo1lineEls.setAttributeNS(null, 'width', setAvoWidth - (AvoMargin * 2));
+        Avo1lineEls.setAttributeNS(null, 'height', setAvoHeight * _spacingSec1.scaleRatio[i] - AvoMargin);
+        Avo1lineEls.setAttributeNS(null, 'fill', _color.scale[i]);
+        parentEl.appendChild(Avo1lineEls);
+  }
   // draw avocado1
   const avocadoImg1 = document.createElementNS(svgNS, 'image');
         avocadoImg1.setAttributeNS(null, 'href', sec1SVGSources[0]);
-        avocadoImg1.setAttributeNS(null, 'x', _sec1Avocado1X);
-        avocadoImg1.setAttributeNS(null, 'y', _sec1Avocado1Y);
+        avocadoImg1.setAttributeNS(null, 'x', _sec1Avocado1X - AvoMargin);
+        avocadoImg1.setAttributeNS(null, 'y', _sec1Avocado1Y - AvoMargin);
         avocadoImg1.setAttributeNS(null, 'width', setAvoWidth);
         avocadoImg1.setAttributeNS(null, 'height', setAvoHeight)
         parentEl.appendChild(avocadoImg1);
@@ -186,7 +184,7 @@ function onSec1init() {
   const sec1TxtStyle = [{ x: _startX, y: _sec1TitleY, 'alignment-baseline': "hanging", 'text-anchor': "start", class: 'title'},
                         { x: _startX, y: _sec1BodyY, 'alignment-baseline': "hanging", 'text-anchor': "start", class: 'body'},
                         { x: _startX, y: _sec1CaptionY, 'alignment-baseline': "baseline", 'text-anchor': "start", class: 'caption'},
-                        { x: _canvasWidth/3 * 2, y: _sec1CaptionY, 'alignment-baseline': "baseline", 'text-anchor': "end", class: 'caption'}]
+                        { x: _canvasWidth/2.9 * 2, y: _sec1CaptionY, 'alignment-baseline': "baseline", 'text-anchor': "end", class: 'caption'}]
   const sec1Svg = document.getElementById('section-0');
         sec1Svg.setAttribute('width', _canvasWidth);
         sec1Svg.setAttribute('height', _canvasHeight);
