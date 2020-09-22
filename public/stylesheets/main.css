@@ -4,23 +4,58 @@ canvas {clear:both; padding: 0; display: block; margin: auto;}
 .subtitle {font-family: 'Roboto'; font-weight: 400; font-size: 1.5vw; line-height: 0.02vh; fill: #423b2b;}
 .body {font-family: 'Roboto'; font-weight: 400; font-size: 1.2vw; line-height: 1.2vh; fill: #725744;}
 .caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.98vw; line-height: 0.013vh; fill: #a8a09b;}
+.avo-white-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.98vw; line-height: 0.013vh; fill: white;}
+.avo-green-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.98vw; line-height: 0.013vh; fill: #92a740;}
 
-.container {width:10em; float:left; margin:20px;}
+#rectEl0 { animation: rectStacked0 ease 1s 1;}
+#rectEl1 { animation: rectStacked1 ease-out 1s 1;}
+#rectEl2 { animation: rectStacked2 ease-in-out 0.5s 1;}
+#rectEl3 { animation: rectStacked3 ease 0.5s 1;}
+#rectEl4 { animation: rectStacked4 ease-in 0.5s 1;}
+@keyframes rectStacked0{
+    0% {height: 0;}
+    100% {height: 66%;}
+}
+@keyframes rectStacked1{
+    0% {height: 0;}
+    100% {height: 40%;}
+}
+@keyframes rectStacked2{
+    0% {height: 0;}
+    100% {height: 15.5%;}
+}
+@keyframes rectStacked3{
+    0% {height: 0;}
+    100% {height: 6.5%;}
+}
+@keyframes rectStacked4{
+    0% {height: 0;}
+    100% {height: 3%;}
+}
 
-.title {
-    animation: titleAnimation ease 1.5s;
+/* #avoInnerText0 {animation: textBink0 ease 1s 1 0.2s;}
+#avoInnerText1 {animation: textBink1 ease-out 1s 1 0.4s;}
+#avoInnerText2 {animation: textBink2 ease-in-out 0.5s 1 0.6s;}
+#avoInnerText3 {animation: textBink3 ease-in-out 0.5s 1 0.8s;}
+#avoInnerText4, #avoInnerText5 {animation: textBink4 ease 0.5s 1 0.9s;}
+#avoInnerText5, .avo-green-caption {animation: textBink5 ease-in 0.5s 1 1s;}
+@keyframes textBink0{
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
-@keyframes titleAnimation{
-    0% {transform: scale(1);}
-    30% {transform: scale(1.02);fill: #528736;}
-    50% {transform: scale(1);}
+@keyframes textBink1{
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
-
-.body {
-    animation: bodyAnimation ease 1s 1 0.5s;
+@keyframes textBink2{
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
-@keyframes bodyAnimation{
-    0% {transform: scale(1);}
-    20% {transform: scale(1.01); opacity: 0.95;}
-    60% {transform: scale(1); opacity: 1;}
+@keyframes textBink3{
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
+@keyframes textBink4{
+    from {opacity: 0;}
+    to {opacity: 1;}
+} */
