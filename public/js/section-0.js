@@ -9,7 +9,7 @@ const _sec1SVGSources = ["img/avocado_outline.SVG", "img/avocado_layer_00.SVG",
 const _sec1ImgDesc = {innerDesc: ['Copper', 'Total fat', 'Pantothenic acid', 'Multi vitamins', 'Other', 'B6  B9  C  E  K', 'Carotenoids  Lutein  Zinc  Fiber  Mangaese  Magnesium  Thiamin  Niacin  Iron'],
                       outerDesc: [5, 5, 14, 36, 40, 'Exocarp', 'Mesocarp', 'Endocarp', 'Seed']}              
 const _sec1PSpacing = {scaleRatio: [1, 0.6, 0.24, 0.1, 0.05],
-                       avocado1innerDescRatio: [1.1, 1.27, 1.56, 2.36, 3.3, 2.5, 3.44],
+                       avocado1innerDescRatio: [1.1, 1.25, 1.56, 2.26, 3.24, 2.4, 3.4],
                        avocadoDescXRatio: [1.4, 1.36, 1.32, 1.23, 1.16, 0.84, 0.84, 0.86, 0.868], 
                        avocadoDescYRatio: [1.1, 1.27, 1.56, 2.36, 3.3, 1.05, 1.5, 2.27, 2.8]};
 const _color =  { scale: ['#213a1a', '#385e2b', '#528736', '#92a740', '#bfb23c'],
@@ -63,8 +63,8 @@ function onTweenSec1(sec1Svg) {
         parentEl.setAttributeNS(null, 'id', 'sec1-avocado1');
   const parentE2 = document.createElementNS(svgNS, 'g');
         parentE2.setAttributeNS(null, 'id', 'sec1-avocado2');
-  let Avo1CenterX, descX1, descX2, targetEl, tNode, textAnchor, textPaddingToLine;
-
+  let Avo1CenterX, textClass, descX1, descX2, targetEl, tNode, textAnchor, textPaddingToLine;
+  console.log('setAvoWidth', setAvoWidth, 'setAvoWidth', setAvoHeight);
   // draw rects
   for (var j = 0; j < 5; j++) {
     let rectEls = document.createElementNS(svgNS, 'rect');
@@ -87,34 +87,16 @@ function onTweenSec1(sec1Svg) {
         parentEl.appendChild(avocadoImg1);
 
   // draw avocado2
-  const avocadoImg2a = document.createElementNS(svgNS, 'image');
-        avocadoImg2a.setAttributeNS(null, 'href', _sec1SVGSources[1]);
-        avocadoImg2a.setAttributeNS(null, 'x', Avo2CenterX - (setAvoWidth/2));
-        avocadoImg2a.setAttributeNS(null, 'y', Avo2CenterY - (setAvoHeight/2));
-        avocadoImg2a.setAttributeNS(null, 'width', setAvoWidth);
-        avocadoImg2a.setAttributeNS(null, 'height', setAvoHeight)
-  const avocadoImg2b = document.createElementNS(svgNS, 'image');
-        avocadoImg2b.setAttributeNS(null, 'href', _sec1SVGSources[2]);
-        avocadoImg2b.setAttributeNS(null, 'x', Avo2CenterX - (setAvoWidth/2));
-        avocadoImg2b.setAttributeNS(null, 'y', Avo2CenterY - (setAvoHeight/2));
-        avocadoImg2b.setAttributeNS(null, 'width', setAvoWidth);
-        avocadoImg2b.setAttributeNS(null, 'height', setAvoHeight)
-  const avocadoImg2c = document.createElementNS(svgNS, 'image');
-        avocadoImg2c.setAttributeNS(null, 'href', _sec1SVGSources[3]);
-        avocadoImg2c.setAttributeNS(null, 'x', Avo2CenterX - (setAvoWidth/2));
-        avocadoImg2c.setAttributeNS(null, 'y', Avo2CenterY - (setAvoHeight/2));
-        avocadoImg2c.setAttributeNS(null, 'width', setAvoWidth);
-        avocadoImg2c.setAttributeNS(null, 'height', setAvoHeight)
-  const avocadoImg2d = document.createElementNS(svgNS, 'image');
-        avocadoImg2d.setAttributeNS(null, 'href', _sec1SVGSources[4]);
-        avocadoImg2d.setAttributeNS(null, 'x', Avo2CenterX - (setAvoWidth/2));
-        avocadoImg2d.setAttributeNS(null, 'y', Avo2CenterY - (setAvoHeight/2));
-        avocadoImg2d.setAttributeNS(null, 'width', setAvoWidth);
-        avocadoImg2d.setAttributeNS(null, 'height', setAvoHeight)
-        parentE2.appendChild(avocadoImg2a);
-        parentE2.appendChild(avocadoImg2b);
-        parentE2.appendChild(avocadoImg2c);
-        parentE2.appendChild(avocadoImg2d);
+  for (var h = 1; h < 5; h++) {
+    const avocadoImg2 = document.createElementNS(svgNS, 'image');
+    avocadoImg2.setAttributeNS(null, 'id', `avocadoImg${h}`);
+        avocadoImg2.setAttributeNS(null, 'href', _sec1SVGSources[h]);
+        avocadoImg2.setAttributeNS(null, 'x', Avo2CenterX - (setAvoWidth/2));
+        avocadoImg2.setAttributeNS(null, 'y', Avo2CenterY - (setAvoHeight/2));
+        avocadoImg2.setAttributeNS(null, 'width', setAvoWidth);
+        avocadoImg2.setAttributeNS(null, 'height', setAvoHeight)
+        parentE2.appendChild(avocadoImg2);
+  }
 
   // draw innerText - avocado1 only
   for(var k = 0; k < 7; k++) {
@@ -122,7 +104,7 @@ function onTweenSec1(sec1Svg) {
       textClass = 'avo-white-caption';
       Avo1CenterX = _sec1Avocado1X + (_canvasWidth * onGetRatio(260, 1920));
       if (k == 3) {
-        Avo1CenterX = _sec1Avocado1X + (_canvasWidth * onGetRatio(230, 1920));
+        Avo1CenterX = _sec1Avocado1X + (_canvasWidth * onGetRatio(220, 1920));
       } else if (k == 4) {
         Avo1CenterX = _sec1Avocado1X + (_canvasWidth * onGetRatio(210, 1920));
       } else if (k == 5) {
@@ -143,7 +125,6 @@ function onTweenSec1(sec1Svg) {
       let innerDescText = _sec1ImgDesc.innerDesc[k].split('Mangaese');
         let textGroupEl = document.createElementNS(svgNS, 'g');
             textGroupEl.setAttributeNS(null, 'class', 'textGroups');
-        let textElement = document.createElementNS(svgNS,"text");
         let textElement1 = document.createElementNS(svgNS,"text");
             textElement1.setAttributeNS(null, "class", 'avo-green-caption');
             textElement1.setAttributeNS(null, "text-anchor", 'middle');
@@ -158,7 +139,6 @@ function onTweenSec1(sec1Svg) {
             textGroupEl.appendChild(textElement1);
             textGroupEl.appendChild(textElement2);
             parentEl.appendChild(textGroupEl);
-        console.log(document.getElementById("test1"))
         textGroupEl.setAttributeNS(null, 'transform', `translate(${Avo1CenterX}, ${_sec1Avocado1Y * _sec1PSpacing.avocado1innerDescRatio[k]})`);
     }
   }
@@ -289,7 +269,7 @@ function onSec1init() {
         sec1Svg.appendChild(sec1BgGroup);
         sec1Svg.appendChild(sec1TextGroup);
   for (var i = 0; i < 4; i++) {
-    on_Sec1WrapText(_sec1WrapText[i], sec1TxtStyle[i], _canvasWidth * onGetRatio(480, 1920), sec1TextGroup);
+    on_Sec1WrapText(_sec1WrapText[i], sec1TxtStyle[i], _canvasWidth / 3.6, sec1TextGroup);
   }
   onTweenSec1(sec1Svg)
 }
