@@ -1,0 +1,15 @@
+type,country,share_in_market,quantity,1Year_growth_in_value,1Year_growth_in_qty,unit_price,concentration_of_import_destinations
+,Import,,,,,,
+Import,United States,20.3,1040,-10.2,15.3,2.36,Very High
+Import,Netherlands,4.5,258.74,-2.2,24.8,2.09,Very Low
+Import,France,3.4,143.55,-8.7,-1.7,2.85,Low
+Import,Germany,2.6,93.08,15.3,28,3.41,Low
+Import,Spain,2.3,129.32,11.4,30.8,2.17,Low
+Import,United Kingdom,2.2,117.67,-5.3,12,2.27,Very Low
+,Export,,,,,,
+Export,Mexico,21.8,1050,-11,17.7,2.29,High
+Export,Netherlands,6.6,245.78,15.7,29.9,2.97,Very Low
+Export,Peru,6.6,Nan,24.4,1.7,Nan,Low
+Export,Spain,3.2,108.89,1.6,-25.2,3.25,Low
+Export,Chile,2.9,135.53,35.8,34.5,2.44,Low
+Export,United States,1.6,68.48,18,39.5,2.62,High
