@@ -1,93 +1,111 @@
 body {margin: 0;}
-canvas {padding: 0; display: block; margin: auto;}
+svg {padding: 0; display: block; margin: auto;}
 .title {font-family: 'Alegreya Sans SC'; font-weight: 900; font-size: 4.2vw; line-height: 0.02vh; fill: #423b2b; margin: 0.2rem 0 0.2rem 0;}
-.subtitle {font-family: 'Roboto'; font-weight: 400; font-size: 1.5vw; line-height: 0.02vh; fill: #423b2b;}
-.body {font-family: 'Roboto'; font-weight: 400; font-size: 1.2vw; line-height: 1.2vh; fill: #725744;}
-.caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.98vw; line-height: 0.013vh; fill: #a8a09b;}
+.subtitle {font-family: 'Roboto'; font-weight: 500; font-size: 1.56vw; line-height: 0.02vh; fill: #423b2b;}
+.ivory-subtitle {font-family: 'Roboto'; font-weight: 400; font-size: 1.68vw; line-height: 0.02vh; fill: #f7f5e7;}
+.body {font-family: 'Roboto'; font-weight: 400; font-size: 1.2vw; line-height: 1.2vh; fill: #605849;}
+.mint-body {font-family: 'Roboto'; font-weight: 400; font-size: 1.2vw; line-height: 1.2vh; fill: #cfd6b9; opacity: 0.9;}
+.grey-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.94vw; line-height: 0.013vh; fill: #a8a09b;}
+.brown-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.94vw; line-height: 0.013vh; fill: #605849;}
+.mint-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.94vw; line-height: 0.013vh; fill: #cfd6b9;}
+.brick-big-caption {font-family: 'Roboto'; font-weight: 500; font-size: 1vw; line-height: 0.013vh; fill: #94593f;}
+.grey-big-caption {font-family: 'Roboto'; font-weight: 500; font-size: 1vw; line-height: 0.013vh; fill: #7c6f69;}
 .avo-white-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.98vw; line-height: 0.013vh; fill: white;}
 .avo-green-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.98vw; line-height: 0.013vh; fill: #92a740;}
+.option:hovor {cursor: pointer;}
 
-#rectEl0 { animation: rectStacked0 ease 1s 1;}
-#rectEl1 { animation: rectStacked1 ease-out 1s 1;}
-#rectEl2 { animation: rectStacked2 ease-out 1s 1;}
-#rectEl3 { animation: rectStacked3 ease-out 1s 1;}
-#rectEl4 { animation: rectStacked4 ease-out 1s 1;}
+
+#rectEl0 {opacity: 0; animation: rectStacked0 ease 1s 0.1s forwards;}
+#rectEl1 {opacity: 0; animation: rectStacked1 ease-out 1s 0.15s forwards;}
+#rectEl2 {opacity: 0; animation: rectStacked2 ease-out 1s 0.2s forwards;}
+#rectEl3 {opacity: 0; animation: rectStacked3 ease-out 1s 0.25s forwards;}
+#rectEl4 {opacity: 0; animation: rectStacked4 ease-out 1s 0.3s forwards;}
 @keyframes rectStacked0{
-    0% {height: 0;}
-    30% {height: 66.3%;}
+    0% {opacity: 1; height: 0;}
+    30% {opacity: 1; height: 66.3%;}
+    100% {opacity: 1; height: 66.3%;}
 }
 @keyframes rectStacked1{
-    0% {height: 0;}
-    40% {height: 41%;}
+    0% {opacity: 1; height: 0;}
+    40% {opacity: 1; height: 41%;}
+    100% {opacity: 1; height: 41%;}
 }
 @keyframes rectStacked2{
-    0% {height: 0;}
-    50% {height: 17%;}
+    0% {opacity: 1; height: 0;}
+    50% {opacity: 1; height: 17%;}
+    100% {opacity: 1; height: 17%;}
 }
 @keyframes rectStacked3{
-    0% {height: 0;}
-    60% {height: 7%;}
+    0% {opacity: 1; height: 0;}
+    60% {opacity: 1; height: 7%;}
+    100% {opacity: 1; height: 7%;}
 }
 @keyframes rectStacked4{
-    0% {height: 0;}
-    70% {height: 3.5%;}
+    0% {opacity: 1; height: 0;}
+    70% {opacity: 1; height: 3.5%;}
+    100% {opacity: 1; height: 3.5%;}
 }
-.title, .body {transform-box: fill-box; opacity: 0; animation: opacity ease-in-out 0.4s forwards;}
+
+.body, .caption {transform-box: fill-box; opacity: 0; animation: opacity ease-in-out 1s 0.2s forwards;}
 @keyframes opacity{
     0% {opacity: 0;}
-    50% {opacity: 0.5;}
-    70% {opacity: 0.7;}
+    50% {opacity: 0.8;}
+    60% {opacity: 1;}
     100% {opacity: 1;}
 }
 
 #avocadoImg1 {transform-box: fill-box; opacity: 0; animation: scale1 ease-out 0.6s forwards;}
-#avocadoImg2 {transform-box: fill-box; opacity: 0; animation: scale2 ease-out 0.6s forwards;}
-#avocadoImg3 {transform-box: fill-box; opacity: 0; animation: scale3 ease-out 0.6s forwards;}
-#avocadoImg4 {transform-box: fill-box; opacity: 0; animation: scale4 ease-out 0.6s forwards;}
+#avocadoImg2 {transform-box: fill-box; opacity: 0; animation: scale2 ease-out 0.6s 0.1s forwards;}
+#avocadoImg3 {transform-box: fill-box; opacity: 0; animation: scale3 ease-out 0.6s 0.3s forwards;}
+#avocadoImg4 {transform-box: fill-box; opacity: 0; animation: scale4 ease-out 0.6s 0.5s forwards;}
 @keyframes scale1{
-    10% {opacity: 1; transform: matrix(0.4, 0, 0, 0.4, 70, 120);}
+    0% {opacity: 1; transform: matrix(0.4, 0, 0, 0.4, 84, 144);}
+    10% {opacity: 1; transform: matrix(0.42, 0, 0, 0.42, 84, 144);}
+    20% {opacity: 1; transform: matrix(0.48, 0, 0, 0.48, 84, 144);}
     100% {opacity: 1; transform: scale(1);}
 }
 @keyframes scale2{
-    20% {opacity: 1; transform: matrix(0.4, 0, 0, 0.4, 70, 120);}
+    0% {opacity: 1; transform: matrix(0.4, 0, 0, 0.4, 84, 144);}
+    10% {opacity: 1; transform: matrix(0.42, 0, 0, 0.42, 84, 144);}
+    20% {opacity: 1; transform: matrix(0.48, 0, 0, 0.48, 84, 144);}
     100% {opacity: 1; transform: scale(1);}
 }
 @keyframes scale3{
-    30% {opacity: 1; transform: matrix(0.4, 0, 0, 0.4, 70, 120);}
+    0% {opacity: 1; transform: matrix(0.4, 0, 0, 0.4, 84, 144);}
+    10% {opacity: 1; transform: matrix(0.42, 0, 0, 0.42, 84, 144);}
+    20% {opacity: 1; transform: matrix(0.48, 0, 0, 0.48, 84, 144);}
     100% {opacity: 1; transform: scale(1);}
 }
 @keyframes scale4{
-    40% {opacity: 1; transform: matrix(0.4, 0, 0, 0.4, 70, 120);}
+    0% {opacity: 1; transform: matrix(0.4, 0, 0, 0.4, 84, 144);}
+    10% {opacity: 1; transform: matrix(0.42, 0, 0, 0.42, 84, 144);}
+    20% {opacity: 1; transform: matrix(0.48, 0, 0, 0.48, 84, 144);}
     100% {opacity: 1; transform: scale(1);}
 }
 
 #avoInnerText0, #avoInnerText1, #avoInnerText2, 
 #avoInnerText3, #avoInnerText4, #avoInnerText5, 
-.avo-green-caption {opacity: 0; transform-box: fill-box; animation: bounceL ease 0.8s 0.2s forwards;}
+.title, .subtitle, .avo-green-caption {opacity: 0; transform-box: fill-box; animation: bounce ease 0.7s 0.2s forwards;}
 
 #avocadoDescCircle0, #avocadoDescCircle1, #avocadoDescCircle2, 
 #avocadoDescCircle3, #avocadoDescCircle4, #avocadoDescCircle5, 
-#avocadoDescCircle6, #avocadoDescCircle7, #avocadoDescCircle8 {opacity: 0; transform-box: fill-box; animation: bounceS ease 0.8s 0.4s forwards;}
+#avocadoDescCircle6, #avocadoDescCircle7, #avocadoDescCircle8 {opacity: 0; transform-box: fill-box; animation: bounce ease 0.6s 0.8s forwards;}
 
 #avoOuterText0, #avoOuterText1, #avoOuterText2,
 #avoOuterText3, #avoOuterText4, #avoOuterText5,
-#avoOuterText6, #avoOuterText7, #avoOuterText8 {opacity: 0; transform-box: fill-box; animation: bounceS ease 0.2s 0.9s forwards;}
+#avoOuterText6, #avoOuterText7, #avoOuterText8 {opacity: 0; transform-box: fill-box; animation: bounce ease 0.6s 1.6s forwards;}
 
-@keyframes bounceL{
+@keyframes bounce{
     0% {opacity: 1; transform:translateY(0%);}
     40% {opacity: 1; transform:translateY(30%);}
-    70% {opacity: 1; transform:translateY(-30%);}
-    100% {opacity: 1; transform:translateY(0);}
-}
-@keyframes bounceS{
-    0% {opacity: 1; transform:translateY(20%);}
-    50% {opacity: 1; transform:translateY(-10%);}
+    60% {opacity: 1; transform:translateY(-30%);}
+    90% {opacity: 1; transform:translateY(10%);}
     100% {opacity: 1; transform:translateY(0);}
 }
 
 #avocadoDescLine0, #avocadoDescLine1, #avocadoDescLine2, 
 #avocadoDescLine3, #avocadoDescLine4, #avocadoDescLine5, 
-#avocadoDescLine6, #avocadoDescLine7, #avocadoDescLine8 {opacity: 0; transform-box: fill-box;  animation: lineMove ease-out 4s 0.6s forwards;}
+#avocadoDescLine6, #avocadoDescLine7, #avocadoDescLine8 {opacity: 0; transform-box: fill-box;  animation: lineMove ease-out 4s 1.2s forwards;}
 
 @keyframes lineMove{
     0% {stroke-dasharray: 1000; stroke-dashoffset: 1000; stroke-linecap: round; opacity: 1;}
