@@ -27,9 +27,15 @@ Promise.all([
 
   function genelateTreeData(treeOption) {
     let importTreeData = tree(data1);
-        importTreeData.sum(d => Math.abs(d[treeOption]));
+        importTreeData.sum(d => { if (Math.abs(d[treeOption]) < 2) {
+                                  return Math.abs(d[treeOption] * 3.8)
+                                  } else { return Math.abs(d[treeOption]);}
+                                });
     let exportTreeData = tree(data2);
-        exportTreeData.sum(d => Math.abs(d[treeOption]));
+        exportTreeData.sum(d => { if (Math.abs(d[treeOption]) < 2) {
+                                    return Math.abs(d[treeOption] * 4.6)
+                                    } else { return Math.abs(d[treeOption]);}
+                                  });
     d3.treemap().tile(d3.treemapSquarify).size([_treeMapWidth, _treeMapheight]).padding(1)(importTreeData);
     d3.treemap().tile(d3.treemapSquarify).size([_treeMapWidth, _treeMapheight]).padding(1)(exportTreeData);
 
@@ -38,10 +44,6 @@ Promise.all([
   }
   
   function onDropdownTreemap(svgId, treeData, dropdownOpt) {
-   
-    console.log('on', treeData, dropdownOpt)
-    let treeDropdownOpt = _columns.filter(d => d != dropdownOpt);
-        treeDropdownOpt.unshift(dropdownOpt);
 
     let svg = d3.select(`#${svgId}`);
     let colorScale = d3.scaleOrdinal()
@@ -94,7 +96,7 @@ Promise.all([
                     .attr("x", _margin.offset)
                     .attr("y", _margin.bodyTop + (_margin.offset / 1.2))
                     .attr("alignment-baseline", 'hanging')
-                    .attr("class", 'body')
+                    .attr("class", 'green-body')
                     .text(dropdownOpt);
         dropdown.append("text")
                     .text("▾")
@@ -106,7 +108,8 @@ Promise.all([
                           .attr("id", `option${svgId}`)
                           .attr('transform', `translate(0, ${_margin.bodyTop - _canvasHeight * onGetRatio(34, null, 900)})`)
                           .attr("opacity", 0)
-                          .on("click", handleSelectClick);
+                          .on("click", handleSelectClick)
+                          .attr("cursor", "pointer");
           options.append("rect")
                     .attr('class', 'option')
                     .attr("x", 0)
@@ -116,25 +119,13 @@ Promise.all([
                     .attr('fill', _color.bg[0])
                     .attr('stroke', _color.lighterBrown);
           options.selectAll('text.body')
-                  .data(treeDropdownOpt)
+                  .data(_columns)
                     .enter()
                   .append("text")
-                    .attr("x", () => _margin.offset)
-                    .attr("y", (d, i) => {
-                      switch(i){
-                        case 0:
-                          return _margin.offset * 0.88;
-                          break;
-                        case 1:
-                          return _margin.offset * 3.3;
-                          break;
-                        case 2:
-                          return _margin.offset * 5.6;
-                          break;
-                      }
-                    })
                     .attr("alignment-baseline", 'hanging')
                     .attr("class", 'body')
+                    .attr("x", () => _margin.offset)
+                    .attr("y", (d, i) => _margin.offset - 1 + (_margin.offset * 2.5 * i))
                     .text(d => d);
           options.append("text")
                     .text("▴")
@@ -146,21 +137,20 @@ Promise.all([
 
       // SET FUNCTIONS
       function handleSelectClick(event){
-          let selectedOpt;
-          const visibility = d3.select(this).attr("opacity") == 0 ? 1 : 0;
-          d3.select(this).attr("opacity", visibility);
-          const callSVG = d3.select(this).attr('id').split('option')[1];
-          // console.log(visibility, event.target.classList.value)
-          if (event.target.classList.value == 'body' && visibility == 0 && event.target.childNodes[0].textContent !== dropdownOpt) {
-            selectedOpt = event.target.childNodes[0].textContent;
-            console.log('data', callSVG, treeDataCollection[callSVG]);
-            treeDataCollection = genelateTreeData(selectedOpt);
-            handleOptionClick(callSVG, treeDataCollection[callSVG], selectedOpt);
-          }
+        let selectedOpt;
+        const visibility = d3.select(this).attr("opacity") == 0 ? 1 : 0;
+        d3.select(this).attr("opacity", visibility);
+        const callSVG = d3.select(this).attr('id').split('option')[1];
+        if (event.target.classList.value == 'body' && visibility == 0 && event.target.childNodes[0].textContent !== dropdownOpt) {
+          selectedOpt = event.target.childNodes[0].textContent;
+          treeDataCollection = genelateTreeData(selectedOpt);
+          console.log('data', callSVG, treeDataCollection[callSVG]);
+          handleOptionClick(callSVG, treeDataCollection[callSVG], selectedOpt);
+        }
       }
 
       function handleOptionClick(svg, treedata, treeOpt) {
-          onDropdownTreemap(svg, treedata, treeOpt);
+        onDropdownTreemap(svg, treedata, treeOpt);
       }
   }
   

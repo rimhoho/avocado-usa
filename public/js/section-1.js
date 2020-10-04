@@ -13,18 +13,17 @@ const _sec1PSpacing = {scaleRatio: [1, 0.6, 0.24, 0.1, 0.05],
                        avocadoDescXRatio: [1.4, 1.36, 1.32, 1.23, 1.16, 0.84, 0.84, 0.86, 0.868], 
                        avocadoDescYRatio: [1.1, 1.27, 1.56, 2.36, 3.3, 1.05, 1.5, 2.27, 2.8]};
 const _color =  { scale: ['#213a1a', '#385e2b', '#528736', '#92a740', '#af9a1c'],
-                  bg : ['#eeefd3', '#cfd6b9', '#94593f'],
+                  bg : ['#eeefd3', '#cfd6b9', '#384435'],
                   treemap: ['#423b2b', '#423b2b', '#364430', '#385e2b', '#528736', '#92a740', '#af9a1c'],
                   brown: '#423b2b',
                   lighterBrown: '#605849',
-                  yellow: '#f2eaa7',
                   lighterGreen: '#92a740',
-                  darkerIvory: '#a8a09b',
                   orangeLine: '#f7931e',
-                  soil: '#94593f',
-                  ivory: '#f4f3ce',
-                  darkerIvory: '#bcb6b3',
-                  darkerIvoryText: '#7c6f69'};
+                  lime: '#e6eca2',
+                  mapSelect: '#e6eca2',
+                  citySelect: '#94593f',
+                  ivory: '#f7f5e7',
+                  darkerGreen: '#4e6047'};
 var _fontStyle = { title: { weight: '900', size: 0, family: 'Alegreya Sans SC', lineHeight: 0},
                    subtitle: { weight: '400', size:0, family: 'Roboto', lineHeight: 0},
                    body: { weight: '400', size:0, family: 'Roboto', lineHeight:  0},
@@ -64,7 +63,7 @@ function onTweenSec1(sec1Svg) {
   const parentE2 = document.createElementNS(svgNS, 'g');
         parentE2.setAttributeNS(null, 'id', 'avocado2');
   let Avo1CenterX, textClass, descX1, descX2, targetEl, tNode, textAnchor, textPaddingToLine;
-  console.log('setAvoWidth', setAvoWidth, 'setAvoWidth', setAvoHeight);
+  // console.log('setAvoWidth', setAvoWidth, 'setAvoWidth', setAvoHeight);
   // draw rects
   for (var j = 0; j < 5; j++) {
     let rectEls = document.createElementNS(svgNS, 'rect');
@@ -249,9 +248,9 @@ function onSec1init() {
         sec1Svg.setAttribute('width', _canvasWidth);
         sec1Svg.setAttribute('height', _canvasHeight);
   const sec1TextGroup = document.createElementNS(svgNS, 'g');
-        sec1TextGroup.setAttributeNS(null, 'id', 'sec1Title');
+        sec1TextGroup.setAttributeNS(null, 'id', 'sec1-Title');
   const sec1BgGroup = document.createElementNS(svgNS, 'g');
-        sec1BgGroup.setAttributeNS(null, 'id', 'sec1Bg&Bar');
+        sec1BgGroup.setAttributeNS(null, 'id', 'sec1-Bg&Bar');
   const rectBG = document.createElementNS(svgNS, 'rect');
         rectBG.setAttributeNS(null, 'x', 0);
         rectBG.setAttributeNS(null, 'y', 0);
