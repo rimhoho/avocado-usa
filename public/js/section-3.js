@@ -36,7 +36,7 @@ Promise.all([
 
 let features = topojson.feature(us, us.objects.states).features;
 let reCsv = d3.nest().key(function(d) { return d.Region; }).entries(csv);
-console.log('csv', reCsv, 'us', features, 'cities', cities.features);
+// console.log('csv', reCsv, 'us', features, 'cities', cities.features);
 
 // SET FUNCTIONS
 function handleTabClick(event){
@@ -412,7 +412,7 @@ function onCurrentMarketSec3(regionOpt){
 }
 
 function onInitSec3(tabOpt){
-  console.log(tabOpt)
+  // console.log(tabOpt)
   let section = d3.select('#section-3')
                     .attr('width', _canvasWidth)
                     .attr('height', _canvasHeight);
