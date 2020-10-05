@@ -3,9 +3,9 @@ const _sec1WrapText = ["Avocado’s nutrition and feature.",
                    `The avocado is prized for its high nutrient value and is added to various dishes due to its good flavor and rich texture (health line.com). \nThese days, this food has become an incredibly popular food among health conscious individuals. It’s often referred to as a superfood, which is not surprising given its health properties (Hass avocado composition and potential health effects).`,
                     "Source: www.tridge.com, www.hassavocadoboard.com",
                     "1/3 Medium (50g)"]
-const _sec1SVGSources = ["img/avocado_outline.SVG", "img/avocado_layer_00.SVG", 
-                        "img/avocado_layer_01.SVG", "img/avocado_layer_02.SVG", 
-                        "img/avocado_layer_03.SVG"];
+const _sec1SVGSources = ["img/avocado_outline.svg", "img/avocado_layer_00.svg", 
+                        "img/avocado_layer_01.svg", "img/avocado_layer_02.svg", 
+                        "img/avocado_layer_03.svg"];
 const _sec1ImgDesc = {innerDesc: ['Copper', 'Total fat', 'Pantothenic acid', 'Multi vitamins', 'Other', 'B6  B9  C  E  K', 'Carotenoids  Lutein  Zinc  Fiber  Mangaese  Magnesium  Thiamin  Niacin  Iron'],
                       outerDesc: [5, 5, 14, 36, 40, 'Exocarp', 'Mesocarp', 'Endocarp', 'Seed']}              
 const _sec1PSpacing = {scaleRatio: [1, 0.6, 0.24, 0.1, 0.05],
