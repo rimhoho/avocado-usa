@@ -8,6 +8,8 @@ function onGetRatio(val, width, height){
 }
  
 // SET VARIABLES
+var _canvasWidth = window.innerWidth < 1920 ? Math.floor(window.innerWidth): 1920;
+var _canvasHeight = window.innerWidth < 1920 ? Math.floor(window.innerWidth / 2.14) : 900;
 const _margin = {titleTop: _canvasHeight * onGetRatio(90, null, 900), bodyTop: _canvasHeight * onGetRatio(150, null, 900), all: _canvasWidth * onGetRatio(80, 1920, null), offset: _canvasWidth * onGetRatio(20, 1920, null)}
 const _treeMapWidth = _canvasWidth * onGetRatio(860, 1920, null);
 const _treeMapheight = _canvasHeight * onGetRatio(630, null, 900);
@@ -44,7 +46,6 @@ Promise.all([
   }
   
   function onDropdownTreemap(svgId, treeData, dropdownOpt) {
-
     let svg = d3.select(`#${svgId}`);
     let colorScale = d3.scaleOrdinal()
                        .domain(treeData.map(x => x.value))
@@ -155,6 +156,7 @@ Promise.all([
   }
   
   function onInitSec2(){
+    console.log('1')
     let section = d3.select('#section-2')
                       .attr('width', _canvasWidth)
                       .attr('height', _canvasHeight);
@@ -193,7 +195,15 @@ Promise.all([
     onDropdownTreemap('Export', treeDataCollection.Export, _columns[0]);
   }
   onInitSec2();
+
+  // ON WINDOW RESIZE
+  window.addEventListener('resize', () => {
+    d3.select(`#Import`).remove();
+    d3.select(`#Export`).remove();
+    onInitSec2();
+  });
   
 }).catch(function(err) {
   console.log(err);
 })
+

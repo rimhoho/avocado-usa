@@ -6,6 +6,9 @@ function onGetRatio(val, width, height){
     return val / height;
   }
 }
+
+var _canvasWidth = window.innerWidth < 1920 ? Math.floor(window.innerWidth): 1920;
+var _canvasHeight = window.innerWidth < 1920 ? Math.floor(window.innerWidth / 2.14) : 900;
 const _tablePadding = {left: _canvasWidth * onGetRatio(58, 1920, null), top: _canvasHeight * onGetRatio(46, null, 900)}
 const _tableColumn = ['City', 'Total Sale', '1 Year Growth'];
 const _RankColumn = ['Rank', 'City', '1 Year Growth'];
@@ -111,13 +114,13 @@ function onCurrentMapSec3(regionOpt){
     }
   })
   let mapWidth = _canvasWidth - (_canvasWidth / 3.2) - _margin.all;
-  let mapHeight = _canvasHeight - _margin.bodyTop;
+  let mapHeight = _canvasHeight - _margin.all;
   let projection = d3.geoAlbersUsa().fitSize([mapWidth, mapHeight], topojson.feature(us, us.objects.states));
   let geoPath = d3.geoPath().projection(projection);
 
   let mapSvg = d3.select('#section-3')
                  .append('g')
-                    .attr('transform', `translate(${_canvasWidth * onGetRatio(588, 1920, null)}, ${_margin.titleTop})`)
+                    .attr('transform', `translate(${_canvasWidth * onGetRatio(588, 1920, null)}, ${_margin.titleTop + _margin.offset})`)
                     .attr('id', 'sec3-map');
       mapSvg.selectAll('.state')
               .data(features)
@@ -218,13 +221,13 @@ function onTopMapSec3(totalTopMarket){
   })
 
   let mapWidth = _canvasWidth - (_canvasWidth / 3.2) - _margin.all;
-  let mapHeight = _canvasHeight - _margin.bodyTop;
+  let mapHeight = _canvasHeight - _margin.all;
   let projection = d3.geoAlbersUsa().fitSize([mapWidth, mapHeight], topojson.feature(us, us.objects.states));
   let geoPath = d3.geoPath().projection(projection);
 
   let mapSvg = d3.select('#section-3')
                  .append('g')
-                    .attr('transform', `translate(${_canvasWidth * onGetRatio(588, 1920, null)}, ${_margin.titleTop})`)
+                    .attr('transform', `translate(${_canvasWidth * onGetRatio(588, 1920, null)}, ${_margin.titleTop + _margin.offset})`)
                     .attr('id', 'sec3-map');
       mapSvg.selectAll('.state')
               .data(features)
@@ -540,6 +543,13 @@ let regionOpt = previousRegion = 'Northeast';
 onInitSec3(initTab);
 onCurrentMarketSec3(regionOpt);
 
+  // ON WINDOW RESIZE
+  window.addEventListener('resize', () => {
+    onInitSec3(initTab);
+    onCurrentMarketSec3(previousRegion);
+  });
+
 }).catch(function(err) {
 console.log(err);
 })
+

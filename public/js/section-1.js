@@ -29,7 +29,8 @@ var _fontStyle = { title: { weight: '900', size: 0, family: 'Alegreya Sans SC', 
                    body: { weight: '400', size:0, family: 'Roboto', lineHeight:  0},
                    caption: { weight: '400', size:0, family: 'Roboto', lineHeight: 0}}
 
-let _canvasWidth, _canvasHeight, _startX, _startY, _sec1TitleY, _sec1BodyY, _sec1CaptionY, _sec1Avocado1X, _sec1Avocado1LineX, _sec1Avocado1Y, _sec1Avocado2X, _sec1Avocado2LineX;
+var _canvasWidth, _canvasHeight;
+let _startX, _startY, _sec1TitleY, _sec1BodyY, _sec1CaptionY, _sec1Avocado1X, _sec1Avocado1LineX, _sec1Avocado1Y, _sec1Avocado2X, _sec1Avocado2LineX;
 const svgNS = "http://www.w3.org/2000/svg";
 
 
@@ -296,7 +297,5 @@ onInit();
 
 // ON WINDOW RESIZE
 window.addEventListener('resize', () => {
-    var x = window.innerWidth;
-    var y = window.innerHeight / 3;
-    console.log("resize", x, y);
+    onInit();
 });
