@@ -144,7 +144,7 @@ Promise.all([
         if (event.target.classList.value == 'body' && visibility == 0 && event.target.childNodes[0].textContent !== dropdownOpt) {
           selectedOpt = event.target.childNodes[0].textContent;
           treeDataCollection = genelateTreeData(selectedOpt);
-          console.log('data', callSVG, treeDataCollection[callSVG]);
+          // console.log('data', callSVG, treeDataCollection[callSVG]);
           handleOptionClick(callSVG, treeDataCollection[callSVG], selectedOpt);
         }
       }
