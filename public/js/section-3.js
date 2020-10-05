@@ -29,7 +29,7 @@ const _regions = [
 
 // READ DATA
 Promise.all([
-  d3.csv('data/avocadosUSAMarket.csv'),
+  d3.csv('data/avocados_market.csv'),
   d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json'),
   d3.json('https://opendata.arcgis.com/datasets/85d0ca4ea1ca4b9abf0c51b9bd34de2e_0.geojson')
 ]).then(function([csv, us, cities]) {
