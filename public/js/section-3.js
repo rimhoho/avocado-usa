@@ -16,7 +16,6 @@ const _lookup = {
   "29" : "MO", "13" : "GA", "12" : "FL", "48" : "TX", "22" : "LA", "16" : "ID", "41" : "OR", 
   "08" : "CO", "04" : "AZ", "32" : "NV", "53" : "WA"
 }
-
 const _regions = [
     {"name": "Northeast",     "states": {"PA":[ "Philadelphia","Harrisburg","Pittsburgh" ], "NY":[ "Buffalo","Albany","New York","Syracuse" ], "MA":[ "Boston" ], "CT": [ "Hartford" ]} },
     {"name": "Great Lakes",   "states": {"IL":[ "Chicago" ], "IN":[ "Indianapolis"], "OH": [ "Cincinnati","Dayton","Columbus" ],"MI": [ "Detroit"]} },
@@ -49,7 +48,6 @@ function handleTabClick(event){
   } else {
     onInitSec3('tab2');
     onTopMarketSec3(previousRegion);
-    onUSAMapSec3(previousRegion);
   }
 }
 
@@ -93,14 +91,15 @@ function tablePerRow(column, valueArr, index, y, fontClass){
                   .enter()
                 .append('text')
                   .attr('x', (d, i) => _rowRatio[i])
-                  .attr('y', () => index * _canvasHeight * onGetRatio(40, null, 900) + (y + _margin.all))
+                  .attr('y', () => index * _canvasHeight * onGetRatio(40, null, 900) + (y + _margin.offset * 3))
                   .attr("class", `row ${fontClass}`)
                   .attr('text-anchor', (d, i) => { if(i != 0) { return 'end'}})
                   .text(d => d);
 }
 
-function onUSAMapSec3(regionOpt){
+function onCurrentMapSec3(regionOpt){
   d3.select('#sec3-map').remove();
+
   // filtered _regions data with regionOpt in us.objects.states
   let getStateIds = [], getCityNames = [];
   _regions.forEach(item => {
@@ -202,7 +201,113 @@ function onUSAMapSec3(regionOpt){
                         d3.select('#sec3-tooltip').remove();
                       });
 }
+function onTopMapSec3(totalTopMarket){
+  d3.select('#sec3-map').remove();
+  let topStates = [], topCities = [];
+  totalTopMarket.forEach(cityArr => {
+    let stateName;
+    _regions.forEach(item => {
+      Object.values(item.states).filter((city, i) => {
+        if (city.includes(cityArr[1])) {
+          stateName = Object.keys(item.states)[i];
+        }
+      })
+    })
+    topCities.push(cityArr[1])
+    topStates.push(stateName);
+  })
 
+  let mapWidth = _canvasWidth - (_canvasWidth / 3.2) - _margin.all;
+  let mapHeight = _canvasHeight - _margin.bodyTop;
+  let projection = d3.geoAlbersUsa().fitSize([mapWidth, mapHeight], topojson.feature(us, us.objects.states));
+  let geoPath = d3.geoPath().projection(projection);
+
+  let mapSvg = d3.select('#section-3')
+                 .append('g')
+                    .attr('transform', `translate(${_canvasWidth * onGetRatio(588, 1920, null)}, ${_margin.titleTop})`)
+                    .attr('id', 'sec3-map');
+      mapSvg.selectAll('.state')
+              .data(features)
+              .enter()  
+            .append('path')
+              .attr('id', d => 'state_' + d.properties.name)
+              .attr('class', 'state')
+              .attr('d', geoPath)
+              .style("fill", d => {
+                if (topStates.includes(_lookup[d.id])) {
+                  return _color.mapSelect;
+                } else {
+                  return _color.ivory;
+                }
+              })
+              .style("stroke-width", "0.5")
+              .style("stroke", _color.brown)
+              .style('opacity', d => {if(d.properties.name == 'Alaska') {return 0}})
+
+    let cityPoints = mapSvg.selectAll('.city')
+                              .data(cities.features)
+                              .enter();
+        cityPoints.append('path')
+                      .attr('id', d => 'city_' + d.properties.NAME)
+                      .attr('class', 'city')
+                      .attr('d', geoPath)
+                      .style("fill", d => {
+                        if (topCities.includes(d.properties.NAME) && topStates.includes(d.properties.ST)) {
+                          return _color.citySelect;
+                        } else {
+                          return 'none';
+                        }
+                      })
+                      .attr("cursor", "pointer")
+                      .on("mouseover", event => {
+                        d3.select('#sec3-tooltip').remove();
+                        let cityId = event.target.id;
+                        let cityName = cityId.replace('city_', '');
+                        let stateName;
+                        _regions.forEach(arr => {
+                          for (const [key, value] of Object.entries(arr.states)) {
+                            if (value.includes(cityName)) {
+                              stateName = key;
+                            }
+                          }
+                        })
+                        let tooltipArr = [];
+                        cities.features.forEach(cityArr => {
+                          if (cityArr.properties.NAME == cityName  && cityArr.properties.ST == stateName) {
+                            tooltipArr.push(['State', cityArr.properties.ST], ['City', cityArr.properties.NAME], ['Population', (cityArr.properties.POPULATION).toLocaleString()], ['# of Households', (cityArr.properties.HOUSEHOLDS).toLocaleString()], ['Median Age', cityArr.properties.MED_AGE], ['Avg. Family Size', cityArr.properties.AVE_FAM_SZ])
+                          }
+                        })
+                        let tooltipG = d3.select('#sec3-map')
+                                          .append('g')
+                                              .attr('transform', `translate(${event.offsetX - _canvasWidth / 3}, ${event.offsetY - _canvasHeight / 4})`)
+                                              .attr('id', 'sec3-tooltip')
+                            tooltipG.append('rect')
+                                        .attr("x", parseInt('-' + _margin.all))
+                                        .attr("y", parseInt('-' + (_margin.all * 1.4)))
+                                        .attr('width', _canvasWidth / 6.8)
+                                        .attr('height', _canvasHeight / 4)
+                                        .attr('fill', _color.citySelect)
+                                        .attr('opacity', .94);
+
+                        let tooltipText = tooltipG.selectAll('.tooltip-text')
+                                                    .data(tooltipArr)
+                                                    .enter()
+                            tooltipText.append('text')
+                                          .attr('x', parseInt('-' + _canvasHeight * onGetRatio(50, null, 900)))
+                                          .attr('y', (d, i) => i * _canvasHeight * onGetRatio(28, null, 900) - _canvasHeight * onGetRatio(60, null, 900))
+                                          .attr("class", 'tooltip-text mint-caption')
+                                          .text((d, i) => d[0]);
+                            tooltipText.append('text')
+                                          .attr('x', _canvasWidth / 6.8 - _canvasHeight * onGetRatio(100, null, 900))
+                                          .attr('y', (d, i) => i * _canvasHeight * onGetRatio(28, null, 900) - _canvasHeight * onGetRatio(60, null, 900))
+                                          .attr("class", 'tooltip-text avo-white-caption')
+                                          .attr('text-anchor', 'end')
+                                          .text(d => d[1]);
+                      })
+                      .on("mouseout", event => {
+                        d3.select('#sec3-tooltip').remove();
+                      });
+}
 function onTopMarketSec3() {
   let valueArr = [], cityGrowth = [], totalTopMarket = [];
   let count = 0;
@@ -214,22 +319,24 @@ function onTopMarketSec3() {
      })
      return;
   })
-
-  let sec3Table = d3.select('#sec3-leftCard')
-                    .append('g')
-                        .attr('id', 'sec3-table')
+  
+  d3.select('#sec3-leftCard')
+    .append('g')
+        .attr('id', 'sec3-table');
+        
   for (var i = 0; i < cityGrowth.length; i++) {
     for (var j = 0; j < valueArr.length; j++) {
       if (valueArr[i] == cityGrowth[j].growth) {
         count += 1;
-        totalTopMarket = [count, cityGrowth[j].city, `+${valueArr[i]}%`];
-        if (count < 11) {
-          tablePerRow(_RankColumn, totalTopMarket, count-1, _margin.titleTop * -1.2, 'mint-body')
+        let topMarket = [count, cityGrowth[j].city, `+${valueArr[i]}%`];
+        if (count < 13) {
+          tablePerRow(_RankColumn, topMarket, count-1, _margin.titleTop * -1.2, 'mint-body')
+          totalTopMarket.push(topMarket)
         }
       }
     }
   }
-  
+  onTopMapSec3(totalTopMarket);
 }
 
 function onCurrentMarketSec3(regionOpt){
@@ -253,8 +360,8 @@ function onCurrentMarketSec3(regionOpt){
                   .text(regionOpt);
       dropdown.append("text")
                   .text("▾")
-                  .attr("x", _canvasWidth * onGetRatio(380, 1920, null))
-                  .attr("y", _margin.bodyTop + (_margin.offset * 1.9))
+                  .attr("x", _canvasWidth * onGetRatio(386, 1920, null))
+                  .attr("y", _margin.bodyTop + (_margin.offset * 1.8))
                   .attr("font-size", '110%')
                   .attr("fill",  _color.bg[2]);
       let sec3Table = d3.select('#sec3-leftCard')
@@ -290,7 +397,7 @@ function onCurrentMarketSec3(regionOpt){
                 .append("text")
                 .attr("id", d => `txt_${d.key}`)
                 .attr("x", () => _margin.offset)
-                .attr("y", (d, i) => _margin.offset + (_margin.offset * 2.34 * i))
+                .attr("y", (d, i) => _margin.offset + (_margin.offset * 2.34 * i) - (_canvasHeight * onGetRatio(3, null, 900)))
                 .attr("alignment-baseline", 'hanging')
                 .attr("class", 'green-body')
                 .text(d => d.key);
@@ -301,7 +408,7 @@ function onCurrentMarketSec3(regionOpt){
                 .attr("font-size", '110%')
                 .attr("fill",  _color.bg[2]);
       
-      onUSAMapSec3(regionOpt);
+      onCurrentMapSec3(regionOpt);
 }
 
 function onInitSec3(tabOpt){
@@ -320,6 +427,12 @@ function onInitSec3(tabOpt){
                 .attr('x', _margin.all)
                 .attr('y', _margin.titleTop)
                 .text('Total U.S. unit sales annual growth, 2020');
+       section.append('text')
+                .attr('class', 'mint-caption')
+                .attr('x', _canvasWidth - _margin.all)
+                .attr('y', _margin.titleTop)
+                .attr('text-anchor', 'end')
+                .text('Census Data will appear when you hovor any city point.');
 
   if (tabOpt == 'tab1') {
     let annualSale = section.append('g')
@@ -423,7 +536,7 @@ function onInitSec3(tabOpt){
 
 
 let initTab = 'tab1';
-let regionOpt = previousRegion = 'Midsouth';
+let regionOpt = previousRegion = 'Northeast';
 onInitSec3(initTab);
 onCurrentMarketSec3(regionOpt);
 

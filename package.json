@@ -1,16 +1,16 @@
 {
   "name": "node-js-getting-started",
   "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "NodeJS + Express project for messing around with d3",
   "engines": {
     "node": "12.x"
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "node test.js"
+    "start": "node index.js"
   },
   "dependencies": {
+    "d3": "^6.2.0",
     "d3-collection": "^1.0.7",
     "d3-fetch": "^2.0.0",
     "d3-geo": "^2.0.1",

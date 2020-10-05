@@ -277,7 +277,7 @@ function onSec1init() {
 function onInit(){
     _canvasWidth = window.innerWidth < 1920 ? Math.floor(window.innerWidth): 1920;
     _canvasHeight = window.innerWidth < 1920 ? Math.floor(window.innerWidth / 2.14) : 900;
-    console.log('Width', _canvasWidth, 'Height', _canvasHeight)
+
     _startX                         = _canvasWidth * onGetRatio(80, 1920, null);
     _startY                         = _canvasWidth * onGetRatio(120, 1920, null);
     _sec1TitleY                     = _canvasHeight * onGetRatio(120, null, 900);

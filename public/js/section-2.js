@@ -100,8 +100,8 @@ Promise.all([
                     .text(dropdownOpt);
         dropdown.append("text")
                     .text("▾")
-                    .attr("x", _canvasWidth * onGetRatio(284, 1920, null))
-                    .attr("y", _margin.bodyTop + (_margin.offset * 1.9))
+                    .attr("x", _canvasWidth * onGetRatio(288, 1920, null))
+                    .attr("y", _margin.bodyTop + (_margin.offset * 1.7))
                     .attr("font-size", '110%')
                     .attr("fill",  _color.lighterBrown);
       let options = svg.append("g")
