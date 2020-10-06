@@ -103,7 +103,7 @@ Promise.all([
                     .text("▾")
                     .attr("x", _canvasWidth * onGetRatio(288, 1920, null))
                     .attr("y", _margin.bodyTop + (_margin.offset * 1.7))
-                    .attr("font-size", '110%')
+                    .attr("class", 'green-big-body')
                     .attr("fill",  _color.lighterBrown);
       let options = svg.append("g")
                           .attr("id", `option${svgId}`)
@@ -132,7 +132,7 @@ Promise.all([
                     .text("▴")
                     .attr("x", _canvasWidth * onGetRatio(284, 1920, null))
                     .attr("y", (_margin.offset * 1.84))
-                    .attr("font-size", '110%')
+                    .attr("class", 'green-big-body')
                     .attr("fill",  _color.lighterBrown);
 
 

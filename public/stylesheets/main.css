@@ -3,10 +3,11 @@ svg {padding: 0; display: block; margin: auto;}
 .title {font-family: 'Alegreya Sans SC'; font-weight: 900; font-size: 4.2vw; line-height: 0.02vh; fill: #423b2b; margin: 0.2rem 0 0.2rem 0;}
 .subtitle {font-family: 'Roboto'; font-weight: 500; font-size: 1.56vw; line-height: 0.02vh; fill: #423b2b;}
 .ivory-subtitle {font-family: 'Roboto'; font-weight: 400; font-size: 1.68vw; line-height: 0.02vh; fill: #f7f5e7;}
-.body {font-family: 'Roboto'; font-weight: 500; font-size: 1.2vw; line-height: 1.2vh; fill: #605849;}
+.body {font-family: 'Roboto'; font-weight: 500; font-size: 1.1vw; line-height: 1.2vh; fill: #605849;}
 .mint-body {font-family: 'Roboto'; font-weight: 400; font-size: 1.1vw; line-height: 1.2vh; fill: #cfd6b9;}
 .lime-body {font-family: 'Roboto'; font-weight: 400; font-size: 1.04vw; line-height: 0.013vh; fill: #e6eca2;}
 .green-body {font-family: 'Roboto'; font-weight: 500; font-size: 1.1vw; line-height: 0.013vh; fill: #384435;}
+.green-big-body {font-family: 'Roboto'; font-weight: 500; font-size: 1.6vw; line-height: 0.013vh; fill: #384435;}
 .grey-caption {font-family: 'Roboto'; font-weight: 400; font-size: 1vw; line-height: 0.013vh; fill: #bcb6b3;}
 .brown-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.9vw; line-height: 0.013vh; fill: #605849;}
 .lime-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.9vw; line-height: 0.013vh; fill: #e6eca2;}
@@ -54,10 +55,10 @@ svg {padding: 0; display: block; margin: auto;}
     100% {opacity: 1;}
 }
 
-#avocadoImg1 {transform-box: fill-box; opacity: 0; animation: scale1 ease-out 0.6s forwards;}
-#avocadoImg2 {transform-box: fill-box; opacity: 0; animation: scale2 ease-out 0.6s 0.1s forwards;}
-#avocadoImg3 {transform-box: fill-box; opacity: 0; animation: scale3 ease-out 0.6s 0.3s forwards;}
-#avocadoImg4 {transform-box: fill-box; opacity: 0; animation: scale4 ease-out 0.6s 0.5s forwards;}
+#avocadoImg1 {transform-box: fill-box; opacity: 0; animation: scale1 ease-out 0.4s forwards;}
+#avocadoImg2 {transform-box: fill-box; opacity: 0; animation: scale2 ease-out 0.4s 0.1s forwards;}
+#avocadoImg3 {transform-box: fill-box; opacity: 0; animation: scale3 ease-out 0.4s 0.3s forwards;}
+#avocadoImg4 {transform-box: fill-box; opacity: 0; animation: scale4 ease-out 0.4s 0.5s forwards;}
 @keyframes scale1{
     0% {opacity: 1; transform: matrix(0.4, 0, 0, 0.4, 84, 144);}
     10% {opacity: 1; transform: matrix(0.42, 0, 0, 0.42, 84, 144);}

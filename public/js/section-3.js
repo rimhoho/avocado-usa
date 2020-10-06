@@ -365,7 +365,7 @@ function onCurrentMarketSec3(regionOpt){
                   .text("▾")
                   .attr("x", _canvasWidth * onGetRatio(386, 1920, null))
                   .attr("y", _margin.bodyTop + (_margin.offset * 1.8))
-                  .attr("font-size", '110%')
+                  .attr("class", 'green-big-body')
                   .attr("fill",  _color.bg[2]);
       let sec3Table = d3.select('#sec3-leftCard')
                   .append('g')
@@ -408,7 +408,7 @@ function onCurrentMarketSec3(regionOpt){
                 .text("▴")
                 .attr("x", _canvasWidth * onGetRatio(380, 1920, null))
                 .attr("y", (_margin.offset * 1.84))
-                .attr("font-size", '110%')
+                .attr("class", 'green-big-body')
                 .attr("fill",  _color.bg[2]);
       
       onCurrentMapSec3(regionOpt);
