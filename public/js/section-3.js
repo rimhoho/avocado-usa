@@ -360,13 +360,15 @@ function onCurrentMarketSec3(regionOpt){
                   .attr("y", _margin.bodyTop + (_margin.offset / 1.2))
                   .attr("alignment-baseline", 'hanging')
                   .attr("class", 'green-body')
-                  .text(regionOpt);
+                  .text(regionOpt)
+                  .attr("cursor", "pointer");
       dropdown.append("text")
                   .text("▾")
                   .attr("x", _canvasWidth * onGetRatio(386, 1920, null))
                   .attr("y", _margin.bodyTop + (_margin.offset * 1.8))
                   .attr("class", 'green-big-body')
-                  .attr("fill",  _color.bg[2]);
+                  .attr("fill",  _color.bg[2])
+                  .attr("cursor", "pointer");
       let sec3Table = d3.select('#sec3-leftCard')
                   .append('g')
                       .attr('id', 'sec3-table')
@@ -384,8 +386,7 @@ function onCurrentMarketSec3(regionOpt){
                         .append("g")
                           .attr('transform', `translate(${_tablePadding.left}, ${_margin.bodyTop - _canvasHeight * onGetRatio(34, null, 900)})`)
                           .attr("opacity", 0)
-                          .on("click", handleSelectClick)
-                          .attr("cursor", "pointer");                    
+                          .on("click", handleSelectClick);                                         
       options.append("rect")
                 .attr('class', 'option')
                 .attr("x", 0)
@@ -403,13 +404,15 @@ function onCurrentMarketSec3(regionOpt){
                 .attr("y", (d, i) => _margin.offset + (_margin.offset * 2.34 * i) - (_canvasHeight * onGetRatio(3, null, 900)))
                 .attr("alignment-baseline", 'hanging')
                 .attr("class", 'green-body')
-                .text(d => d.key);
+                .text(d => d.key)
+                .attr("cursor", "pointer");
       options.append("text")
                 .text("▴")
                 .attr("x", _canvasWidth * onGetRatio(380, 1920, null))
                 .attr("y", (_margin.offset * 1.84))
                 .attr("class", 'green-big-body')
-                .attr("fill",  _color.bg[2]);
+                .attr("fill",  _color.bg[2])
+                .attr("cursor", "pointer");
       
       onCurrentMapSec3(regionOpt);
 }

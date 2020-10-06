@@ -98,19 +98,20 @@ Promise.all([
                     .attr("y", _margin.bodyTop + (_margin.offset / 1.2))
                     .attr("alignment-baseline", 'hanging')
                     .attr("class", 'green-body')
-                    .text(dropdownOpt);
+                    .text(dropdownOpt)
+                    .attr("cursor", "pointer");
         dropdown.append("text")
                     .text("▾")
                     .attr("x", _canvasWidth * onGetRatio(288, 1920, null))
                     .attr("y", _margin.bodyTop + (_margin.offset * 1.7))
                     .attr("class", 'green-big-body')
-                    .attr("fill",  _color.lighterBrown);
+                    .attr("fill",  _color.lighterBrown)
+                    .attr("cursor", "pointer");
       let options = svg.append("g")
                           .attr("id", `option${svgId}`)
                           .attr('transform', `translate(0, ${_margin.bodyTop - _canvasHeight * onGetRatio(34, null, 900)})`)
                           .attr("opacity", 0)
-                          .on("click", handleSelectClick)
-                          .attr("cursor", "pointer");
+                          .on("click", handleSelectClick);
           options.append("rect")
                     .attr('class', 'option')
                     .attr("x", 0)
@@ -127,13 +128,15 @@ Promise.all([
                     .attr("class", 'body')
                     .attr("x", () => _margin.offset)
                     .attr("y", (d, i) => _margin.offset - 1 + (_margin.offset * 2.5 * i))
-                    .text(d => d);
+                    .text(d => d)
+                    .attr("cursor", "pointer");
           options.append("text")
                     .text("▴")
                     .attr("x", _canvasWidth * onGetRatio(284, 1920, null))
                     .attr("y", (_margin.offset * 1.84))
                     .attr("class", 'green-big-body')
-                    .attr("fill",  _color.lighterBrown);
+                    .attr("fill",  _color.lighterBrown)
+                    .attr("cursor", "pointer");
 
 
       // SET FUNCTIONS
