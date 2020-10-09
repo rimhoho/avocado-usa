@@ -547,10 +547,14 @@ onInitSec3(initTab);
 onCurrentMarketSec3(regionOpt);
 
   // ON WINDOW RESIZE
-  window.addEventListener('resize', () => {
-    onInitSec3(initTab);
-    onCurrentMarketSec3(previousRegion);
-  });
+  // window.addEventListener('resize', () => {
+  //   // console.log(window.innerWidth)
+  //   if (window.innerWidth > 541) {
+  //     // console.log('Should\'t under 541', window.innerWidth);
+  //     onInitSec3(initTab);
+  //     onCurrentMarketSec3(previousRegion);
+  //   }
+  // });
 
 }).catch(function(err) {
 console.log(err);

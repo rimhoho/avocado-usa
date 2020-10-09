@@ -30,12 +30,12 @@ Promise.all([
   function genelateTreeData(treeOption) {
     let importTreeData = tree(data1);
         importTreeData.sum(d => { if (Math.abs(d[treeOption]) < 2) {
-                                  return Math.abs(d[treeOption] * 3.8)
+                                  return Math.abs(d[treeOption] * 1.8)
                                   } else { return Math.abs(d[treeOption]);}
                                 });
     let exportTreeData = tree(data2);
         exportTreeData.sum(d => { if (Math.abs(d[treeOption]) < 2) {
-                                    return Math.abs(d[treeOption] * 4.6)
+                                    return Math.abs(d[treeOption] * 2.5)
                                     } else { return Math.abs(d[treeOption]);}
                                   });
     d3.treemap().tile(d3.treemapSquarify).size([_treeMapWidth, _treeMapheight]).padding(1)(importTreeData);
@@ -46,6 +46,7 @@ Promise.all([
   }
   
   function onDropdownTreemap(svgId, treeData, dropdownOpt) {
+
     let svg = d3.select(`#${svgId}`);
     let colorScale = d3.scaleOrdinal()
                        .domain(treeData.map(x => x.value))
@@ -144,22 +145,18 @@ Promise.all([
         let selectedOpt;
         const visibility = d3.select(this).attr("opacity") == 0 ? 1 : 0;
         d3.select(this).attr("opacity", visibility);
+        // console.log('open Opt', visibility);
         const callSVG = d3.select(this).attr('id').split('option')[1];
         if (event.target.classList.value == 'body' && visibility == 0 && event.target.childNodes[0].textContent !== dropdownOpt) {
           selectedOpt = event.target.childNodes[0].textContent;
           treeDataCollection = genelateTreeData(selectedOpt);
-          // console.log('data', callSVG, treeDataCollection[callSVG]);
-          handleOptionClick(callSVG, treeDataCollection[callSVG], selectedOpt);
+          onDropdownTreemap(callSVG, treeDataCollection[callSVG], selectedOpt);
         }
-      }
-
-      function handleOptionClick(svg, treedata, treeOpt) {
-        onDropdownTreemap(svg, treedata, treeOpt);
       }
   }
   
   function onInitSec2(){
-    console.log('1')
+
     let section = d3.select('#section-2')
                       .attr('width', _canvasWidth)
                       .attr('height', _canvasHeight);
@@ -200,11 +197,15 @@ Promise.all([
   onInitSec2();
 
   // ON WINDOW RESIZE
-  window.addEventListener('resize', () => {
-    d3.select(`#Import`).remove();
-    d3.select(`#Export`).remove();
-    onInitSec2();
-  });
+  // window.addEventListener('resize', () => {
+  //   // console.log(window.innerWidth)
+  //   if (window.innerWidth > 541) {
+  //     // console.log('Should\'t under 541', window.innerWidth);
+  //     d3.select(`#Import`).remove();
+  //     d3.select(`#Export`).remove();
+  //     onInitSec2();
+  //   }
+  // });
   
 }).catch(function(err) {
   console.log(err);
