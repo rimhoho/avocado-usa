@@ -156,12 +156,8 @@ Promise.all([
   }
   
   function onInitSec2(){
-
-    if (document.getElementById('Import') || document.getElementById('Export')) {
-        d3.select(`#Import`).remove();
-        d3.select(`#Export`).remove();
-    };
-
+    var _canvasWidth = window.innerWidth < 1920 ? Math.floor(window.innerWidth): 1920;
+    var _canvasHeight = window.innerWidth < 1920 ? Math.floor(window.innerWidth / 2.14) : 900;
     let section = d3.select('#section-2')
                       .attr('width', _canvasWidth)
                       .attr('height', _canvasHeight);
@@ -199,13 +195,18 @@ Promise.all([
     onDropdownTreemap('Import', treeDataCollection.Import, _columns[0]);
     onDropdownTreemap('Export', treeDataCollection.Export, _columns[0]);
   }
+
   onInitSec2();
 
   // ON WINDOW RESIZE
   window.addEventListener('resize', () => {
-    // console.log(window.innerWidth)
     if (window.innerWidth > 541) {
-      // console.log('Should\'t under 541', window.innerWidth);
+      d3.select('#section-2').remove();
+      let svg = document.createElementNS(svgNS, 'svg');
+          svg.setAttributeNS(null, 'id', `section-2`);
+          svg.setAttributeNS(null, 'width', _canvasWidth);
+          svg.setAttributeNS(null, 'height', _canvasHeight);
+          document.querySelector('body').appendChild(svg);
       onInitSec2();
     }
   });

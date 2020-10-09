@@ -70,6 +70,7 @@ function handleOptClick(regionId) {
 }
 
 function tablePerRow(column, valueArr, index, y, fontClass){
+
   let sec3Table = d3.select('#sec3-table')
                     .append('g')
                         .attr('class', `sec3-row-group`)
@@ -339,13 +340,13 @@ function onTopMarketSec3() {
   d3.select('#sec3-leftCard')
     .append('g')
         .attr('id', 'sec3-table');
-        
   for (var i = 0; i < cityGrowth.length; i++) {
     for (var j = 0; j < valueArr.length; j++) {
       if (valueArr[i] == cityGrowth[j].growth) {
         count += 1;
         let topMarket = [count, cityGrowth[j].city, `+${valueArr[i]}%`];
         if (count < 13) {
+          console.log('top')
           tablePerRow(_RankColumn, topMarket, count-1, _margin.titleTop * -1.2, 'mint-body')
           totalTopMarket.push(topMarket)
         }
@@ -385,7 +386,6 @@ function onCurrentMarketSec3(regionOpt){
       let sec3Table = d3.select('#sec3-leftCard')
                   .append('g')
                       .attr('id', 'sec3-table')
-
       reCsv.forEach(item => {
         if(item.key == regionOpt) {
          item.values.map((value, index) => {
@@ -561,9 +561,13 @@ onCurrentMarketSec3(regionOpt);
 
   // ON WINDOW RESIZE
   window.addEventListener('resize', () => {
-    // console.log(window.innerWidth)
     if (window.innerWidth > 541) {
-      // console.log('Should\'t under 541', window.innerWidth);
+      d3.select('#section-3').remove();
+      let svg = document.createElementNS(svgNS, 'svg');
+          svg.setAttributeNS(null, 'id', `section-3`);
+          svg.setAttributeNS(null, 'width', _canvasWidth);
+          svg.setAttributeNS(null, 'height', _canvasHeight);
+          document.querySelector('body').appendChild(svg);
       onInitSec3(initTab);
       onCurrentMarketSec3(previousRegion);
     }
