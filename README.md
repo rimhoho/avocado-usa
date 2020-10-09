@@ -24,4 +24,4 @@ Data gathering from three different geoJSON and restructuring and mixing among t
 - [Hass Avocado Board](https://hassavocadoboard.com/category-data/)
 - [ArcGIS Hub](https://hub.arcgis.com/datasets/esri::usa-major-cities/data)
 
-![avocado_inforaphic_v13](https://github.com/rimhoho/avocado-usa/tree/master/public/img/avocado_inforaphic_v13.png)
+![avocado_inforaphic_v13](https://github.com/rimhoho/avocado-usa/blob/master/public/img/avocado_inforaphic_v13.png)
