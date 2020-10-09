@@ -4,6 +4,7 @@ Are you an avocado lover?
 
 I do enjoy eating this fruit (avocado is a fruit not a vegetable), and loving the color combination! These two reasons brought me to create a funny informative infographic for the avocado after I browsed a beautiful data in [Kaggle](https://www.kaggle.com/neuromusic/avocado-prices). Only problem is the data is a bit outdated - covered from 2016 to 2018, I decided to dig more data set that can provide a more recent time range with interesting facts.
 
+![avocado_inforaphic_v13](https://github.com/rimhoho/avocado-usa/blob/master/public/img/avocado_inforaphic_v13.png)
 - TEAM SIZE : 1
 - TIME FRAME : 4 weeks
 - TOOLS : Adobe Illustrator, pure canvas with JavaScript, D3.js, Deploying Heroku with Node.JS Express
@@ -23,5 +24,3 @@ Data gathering from three different geoJSON and restructuring and mixing among t
 - [Tridge](https://www.tridge.com/trades/HS1992/080440-fruit-edible-avocados-fresh-or-dried/import)
 - [Hass Avocado Board](https://hassavocadoboard.com/category-data/)
 - [ArcGIS Hub](https://hub.arcgis.com/datasets/esri::usa-major-cities/data)
-
-![avocado_inforaphic_v13](https://github.com/rimhoho/avocado-usa/blob/master/public/img/avocado_inforaphic_v13.png)
