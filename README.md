@@ -23,3 +23,5 @@ Data gathering from three different geoJSON and restructuring and mixing among t
 - [Tridge](https://www.tridge.com/trades/HS1992/080440-fruit-edible-avocados-fresh-or-dried/import)
 - [Hass Avocado Board](https://hassavocadoboard.com/category-data/)
 - [ArcGIS Hub](https://hub.arcgis.com/datasets/esri::usa-major-cities/data)
+
+![avocado_inforaphic_v13](https://github.com/rimhoho/avocado-usa/tree/master/public/img/avocado_inforaphic_v13.png)
