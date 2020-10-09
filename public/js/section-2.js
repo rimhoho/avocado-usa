@@ -98,7 +98,7 @@ Promise.all([
                     .attr("x", _margin.offset)
                     .attr("y", _margin.bodyTop + (_margin.offset / 1.2))
                     .attr("alignment-baseline", 'hanging')
-                    .attr("class", 'green-body')
+                    .attr("class", 'body')
                     .text(dropdownOpt)
                     .attr("cursor", "pointer");
         dropdown.append("text")
@@ -157,6 +157,11 @@ Promise.all([
   
   function onInitSec2(){
 
+    if (document.getElementById('Import') || document.getElementById('Export')) {
+        d3.select(`#Import`).remove();
+        d3.select(`#Export`).remove();
+    };
+
     let section = d3.select('#section-2')
                       .attr('width', _canvasWidth)
                       .attr('height', _canvasHeight);
@@ -197,15 +202,13 @@ Promise.all([
   onInitSec2();
 
   // ON WINDOW RESIZE
-  // window.addEventListener('resize', () => {
-  //   // console.log(window.innerWidth)
-  //   if (window.innerWidth > 541) {
-  //     // console.log('Should\'t under 541', window.innerWidth);
-  //     d3.select(`#Import`).remove();
-  //     d3.select(`#Export`).remove();
-  //     onInitSec2();
-  //   }
-  // });
+  window.addEventListener('resize', () => {
+    // console.log(window.innerWidth)
+    if (window.innerWidth > 541) {
+      // console.log('Should\'t under 541', window.innerWidth);
+      onInitSec2();
+    }
+  });
   
 }).catch(function(err) {
   console.log(err);

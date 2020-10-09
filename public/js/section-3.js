@@ -13,12 +13,14 @@ const _tablePadding = {left: _canvasWidth * onGetRatio(58, 1920, null), top: _ca
 const _tableColumn = ['City', 'Total Sale', '1 Year Growth'];
 const _RankColumn = ['Rank', 'City', '1 Year Growth'];
 const _rowRatio = [0, _canvasWidth * onGetRatio(280, 1920, null), _canvasWidth * onGetRatio(420, 1920, null)];
-const _lookup = {
-  "42" : "PA", "36" : "NY", "06" : "CA", "25" : "MA", "09" : "CT", "17" : "IL", "18" : "IN", 
-  "39" : "OH", "26" : "MI", "24" : "MD", "51" : "VA", "37" : "NC", "21" : "KY", "47" : "TN", 
-  "29" : "MO", "13" : "GA", "12" : "FL", "48" : "TX", "22" : "LA", "16" : "ID", "41" : "OR", 
-  "08" : "CO", "04" : "AZ", "32" : "NV", "53" : "WA"
-}
+const _lookupId = { "42" : "PA", "36" : "NY", "06" : "CA", "25" : "MA", "09" : "CT", "17" : "IL", "18" : "IN", 
+                    "39" : "OH", "26" : "MI", "24" : "MD", "51" : "VA", "37" : "NC", "21" : "KY", "47" : "TN", 
+                    "29" : "MO", "13" : "GA", "12" : "FL", "48" : "TX", "22" : "LA", "16" : "ID", "41" : "OR", 
+                    "08" : "CO", "04" : "AZ", "32" : "NV", "53" : "WA" }
+const _lookupRank = { "Chicago": 1, "Boise": 2, "Portland":3,
+                      "Philadelphia": 4, "Baltimore": 5, "Richmond": 6,
+                      "Harrisburg": 7, "Spokane": 8, "Buffalo": 9, 
+                      "Indianapolis": 10, "Charlotte": 11, "Albany": 12 }
 const _regions = [
     {"name": "Northeast",     "states": {"PA":[ "Philadelphia","Harrisburg","Pittsburgh" ], "NY":[ "Buffalo","Albany","New York","Syracuse" ], "MA":[ "Boston" ], "CT": [ "Hartford" ]} },
     {"name": "Great Lakes",   "states": {"IL":[ "Chicago" ], "IN":[ "Indianapolis"], "OH": [ "Cincinnati","Dayton","Columbus" ],"MI": [ "Detroit"]} },
@@ -130,7 +132,7 @@ function onCurrentMapSec3(regionOpt){
               .attr('class', 'state')
               .attr('d', geoPath)
               .style("fill", d => {
-                if (getStateIds[0].includes(_lookup[d.id])) {
+                if (getStateIds[0].includes(_lookupId[d.id])) {
                   return _color.mapSelect;
                 } else {
                   return _color.ivory;
@@ -219,6 +221,7 @@ function onTopMapSec3(totalTopMarket){
     topCities.push(cityArr[1])
     topStates.push(stateName);
   })
+  // console.log(topStates, topCities)
 
   let mapWidth = _canvasWidth - (_canvasWidth / 3.2) - _margin.all;
   let mapHeight = _canvasHeight - _margin.all;
@@ -237,7 +240,7 @@ function onTopMapSec3(totalTopMarket){
               .attr('class', 'state')
               .attr('d', geoPath)
               .style("fill", d => {
-                if (topStates.includes(_lookup[d.id])) {
+                if (topStates.includes(_lookupId[d.id])) {
                   return _color.mapSelect;
                 } else {
                   return _color.ivory;
@@ -310,6 +313,16 @@ function onTopMapSec3(totalTopMarket){
                       .on("mouseout", event => {
                         d3.select('#sec3-tooltip').remove();
                       });
+          cityPoints.append('text')
+                        .attr('transform', d => `translate(${geoPath.centroid(d)[0]}, ${geoPath.centroid(d)[1] + (_margin.offset * 1.1)})`)
+                        .attr('class', 'map-caption')
+                        .attr('text-anchor', 'middle')
+                        .text(d => {
+                          if (topCities.includes(d.properties.NAME) && topStates.includes(d.properties.ST)) {
+                            // console.log(d.properties.NAME, d.properties.ST)
+                            return `${_lookupRank[d.properties.NAME]}`;
+                          }
+                        })
 }
 function onTopMarketSec3() {
   let valueArr = [], cityGrowth = [], totalTopMarket = [];
@@ -547,14 +560,14 @@ onInitSec3(initTab);
 onCurrentMarketSec3(regionOpt);
 
   // ON WINDOW RESIZE
-  // window.addEventListener('resize', () => {
-  //   // console.log(window.innerWidth)
-  //   if (window.innerWidth > 541) {
-  //     // console.log('Should\'t under 541', window.innerWidth);
-  //     onInitSec3(initTab);
-  //     onCurrentMarketSec3(previousRegion);
-  //   }
-  // });
+  window.addEventListener('resize', () => {
+    // console.log(window.innerWidth)
+    if (window.innerWidth > 541) {
+      // console.log('Should\'t under 541', window.innerWidth);
+      onInitSec3(initTab);
+      onCurrentMarketSec3(previousRegion);
+    }
+  });
 
 }).catch(function(err) {
 console.log(err);

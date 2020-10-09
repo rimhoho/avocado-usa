@@ -296,10 +296,8 @@ function onInit(){
 onInit();
 
 // ON WINDOW RESIZE
-// window.addEventListener('resize', () => {
-//   console.log(window.innerWidth)
-//   if (window.innerWidth > 541) {
-//     console.log('Should\'t under 541', window.innerWidth);
-//     onInit();
-//   }
-// });
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 541) {
+    onInit();
+  }
+});

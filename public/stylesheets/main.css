@@ -6,15 +6,15 @@ svg {padding: 0; display: block; margin: auto;}
 .body {font-family: 'Roboto'; font-weight: 500; font-size: 1.1vw; line-height: 1.2vh; fill: #605849;}
 .mint-body {font-family: 'Roboto'; font-weight: 400; font-size: 1.1vw; line-height: 1.2vh; fill: #cfd6b9;}
 .lime-body {font-family: 'Roboto'; font-weight: 400; font-size: 1.04vw; line-height: 0.013vh; fill: #e6eca2;}
-.green-body {font-family: 'Roboto'; font-weight: 500; font-size: 1.1vw; line-height: 0.013vh; fill: #384435;}
-.green-big-body {font-family: 'Roboto'; font-weight: 500; font-size: 1.6vw; line-height: 0.013vh; fill: #384435;}
+.green-body {font-family: 'Roboto'; font-weight: 500; font-size: 1vw; line-height: 0.013vh; fill: #384435;}
+.green-big-body {font-family: 'Roboto'; font-weight: 500; font-size: 1.6vw; line-height: 0.013vh; fill: #605849;}
 .grey-caption {font-family: 'Roboto'; font-weight: 400; font-size: 1vw; line-height: 0.013vh; fill: #bcb6b3;}
 .brown-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.9vw; line-height: 0.013vh; fill: #605849;}
 .lime-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.9vw; line-height: 0.013vh; fill: #e6eca2;}
 .mint-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.94vw; line-height: 0.013vh; fill: #cfd6b9;}
+.map-caption {font-family: 'Roboto'; font-weight: 900; font-size: 0.8vw; line-height: 0.013vh; fill: #94593f;}
 .avo-white-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.98vw; line-height: 0.013vh; fill: white;}
 .avo-green-caption {font-family: 'Roboto'; font-weight: 400; font-size: 0.98vw; line-height: 0.013vh; fill: #92a740;}
-#optionExport:hovor, #optionImport:hovor {cursor: pointer;}
 
 #rectEl0 {opacity: 0; animation: rectStacked0 ease 1s 0.1s forwards;}
 #rectEl1 {opacity: 0; animation: rectStacked1 ease-out 1s 0.15s forwards;}
