@@ -1,4 +1,5 @@
-# Avocado @ U.S. [Link to Website](https://avocado-usa.herokuapp.com/)
+# Avocado @ U.S. 
+[Link to Deployed Project](https://avocado-usa.herokuapp.com/)
 
 Are you an avocado lover?
 
